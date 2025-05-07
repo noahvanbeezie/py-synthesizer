@@ -13,7 +13,12 @@ class GUI(tkinter.Tk):
         self.pady = 2
         self.starting_value = 50 
 
-        #Setting initial Widget values
+        self.create_slider(0)
+        self.create_slider(1)
+
+
+    def create_slider(self, curr_row):
+        #Creating initial variables
         self.slider_val = tkinter.IntVar()
         self.slider_title = tkinter.Label(text="Example Slider")
         self.slider = tkinter.Scale(from_=0, to=100, orient=HORIZONTAL, showvalue=0, tickinterval=0, variable=self.slider_val, command=self.set_label_text)
@@ -21,9 +26,9 @@ class GUI(tkinter.Tk):
         self.slider_variable_value = tkinter.Label(text=self.starting_value)
 
         #Setting up the display grid
-        self.slider_title.grid(row=0, column=0, padx=self.padx, pady=self.pady)
-        self.slider.grid(row=0, column=1, padx=self.padx, pady=self.pady)
-        self.slider_variable_value.grid(row=0, column=2, padx=self.padx, pady=self.pady)
+        self.slider_title.grid(row=curr_row, column=0, padx=self.padx, pady=self.pady)
+        self.slider.grid(row=curr_row, column=1, padx=self.padx, pady=self.pady)
+        self.slider_variable_value.grid(row=curr_row, column=2, padx=self.padx, pady=self.pady)
 
     def set_label_text(self, value):
         self.slider_variable_value.config(text=value)
