@@ -13,22 +13,20 @@ class GUI(tkinter.Tk):
         self.pady = 2
         self.starting_value = 50 
 
-        self.create_slider(0)
-        self.create_slider(1)
+        #Creating sliders
+        self.create_slider("volume", 0)
+        self.create_slider("example", 1)
 
 
-    def create_slider(self, curr_row):
+    def create_slider(self, slider_name_, curr_row):
         #Creating initial variables
         self.slider_val = tkinter.IntVar()
         self.slider_title = tkinter.Label(text="Example Slider")
-        self.slider = tkinter.Scale(from_=0, to=100, orient=HORIZONTAL, showvalue=0, tickinterval=0, variable=self.slider_val, command=self.set_label_text)
+        self.slider = tkinter.Scale(from_=0, to=100, orient=HORIZONTAL, showvalue=0, tickinterval=0, variable=self.slider_val)
         self.slider.set(self.starting_value)
-        self.slider_variable_value = tkinter.Label(text=self.starting_value)
+        self.slider_input = tkinter.Entry(textvariable=self.slider_val)
 
         #Setting up the display grid
         self.slider_title.grid(row=curr_row, column=0, padx=self.padx, pady=self.pady)
         self.slider.grid(row=curr_row, column=1, padx=self.padx, pady=self.pady)
-        self.slider_variable_value.grid(row=curr_row, column=2, padx=self.padx, pady=self.pady)
-
-    def set_label_text(self, value):
-        self.slider_variable_value.config(text=value)
+        self.slider_input.grid(row=curr_row, column=2, padx=self.padx, pady=self.pady)
